@@ -1,0 +1,12 @@
+{% if page is empty %}
+    <h3>Oops</h3>
+    <p>The page you requested does not yet exist. Would you like to {{ link_to("create", "create it") }}?</p>
+{% else %}
+    {# Cache all pages for 1 day, it's static content anyways #}
+    {% cache ("page-" ~ page.id) 86400 %}
+    <p class="page">{{ link_to("", "~") }} / {{ page.title }}</p>
+    <div id="content">
+        {{ purifier.purify(markdown.defaultTransform(page.content)) }}
+    </div>
+    {% endcache %}
+{% endif %}

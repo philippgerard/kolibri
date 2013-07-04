@@ -1,0 +1,16 @@
+<p class="page">{{ link_to("", "~") }} / {{ link_to("page/"~page.title, page.title) }}
+    / {{ link_to("version/"~page.id, "Revisions") }} / {{ revision }}</p>
+<h1>diff({{ revision }}, head)</h1>
+<button href="#" data-reveal-id="reimport" class="button small secondary">Reimport this revision</button>
+<hr />
+{{ diff }}
+{% if diff is empty %}
+<p>This version and the current version are identical.</p>
+{% endif %}
+<div id="reimport" class="reveal-modal medium">
+    <h2>Are you sure?</h2>
+    <p class="lead">Reimporting this revision will set the contents of the revision as the latest contents.</p>
+    <p>The old contents won't be deleted but a new revision with the contents of this revision will be created. That means that you can undo this step.</p>
+    {{ link_to("reimport/" ~ page.id ~ "/" ~ revision, "Yes, go ahead.", "class": 'button secondary') }}
+    <a class="close-reveal-modal">&#215;</a>
+</div>

@@ -1,0 +1,12 @@
+<p class="page">{{ link_to("", "~") }} / Latest changes</p>
+<h1>10 latest changes</h1>
+<ol>
+    {% for page in pages %}
+        <li>
+            {{ page.title }}<br/>
+            <small>edited at {{ page.created }}</small><br />
+            <a href="{{ url("page/" ~ page.title) }}" class="button small secondary">View page</a>
+            <a href="{{ url("version/" ~ page.id ~ "/" ~ page.version) }}" class="button small secondary">View diff</a>
+        </li>
+    {% endfor %}
+</ol>

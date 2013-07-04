@@ -1,0 +1,171 @@
+textarea {
+    height: auto
+}
+
+ul, ol {
+    margin: 0 0 0 25px
+}
+
+nav ol, nav ul {
+    margin: 0
+}
+
+p.page {
+    font-family: Consolas, "Courier New", Courier, sans-serif
+}
+
+button[type="submit"] b {
+    text-decoration: underline
+}
+
+footer p {
+    font-size: .8em
+}
+
+.hidden {
+    display: none
+}
+
+.antialiased {
+    -webkit-font-smoothing: antialiased
+}
+
+.diff_ol {
+    list-style-type: decimal-leading-zero
+}
+
+.diff {
+    margin: 0 0 2px 0;
+    padding: 4px;
+    font-size: .8em
+}
+
+.diff_0 {
+    background-color: transparent;
+    border: 1px solid white
+}
+
+.diff_1 {
+    background-color: rgba(154, 205, 50, .5);
+    border: 1px solid rgba(154, 205, 50, .5)
+}
+
+.diff_2 {
+    background-color: rgba(200, 100, 100, .5);
+    border: 1px solid rgba(200, 100, 100, .7)
+}
+
+@media print {
+    div:not(.reveal-modal) {
+        display: block
+    }
+}
+
+div.e404 {
+    margin: auto;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    border: 3px solid #f1f1f1
+}
+
+div.e404 p {
+    font-size: 5em;
+    margin: 35px 0 0 30px
+}
+
+p.e404t {
+    text-align: center;
+    margin: 20px 0 20px 0
+}
+
+h1.e404h {
+    text-align: center
+}
+
+#editor {
+    border: 1px solid #d0d0d0;
+    position: relative;
+    height: 600px;
+    margin: 0 0 20px 0;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1)
+}
+
+pre code {
+    display: block;
+    padding: .5em;
+    color: #000;
+    background: #fff
+}
+
+pre .subst, pre .title {
+    font-weight: normal;
+    color: #000
+}
+
+pre .comment, pre .template_comment, pre .javadoc, pre .diff .header {
+    color: #808080;
+    font-style: italic
+}
+
+pre .annotation, pre .decorator, pre .preprocessor, pre .doctype, pre .pi, pre .chunk, pre .shebang, pre .apache .cbracket, pre .prompt, pre .http .title {
+    color: #808000
+}
+
+pre .tag, pre .pi {
+    background: #efefef
+}
+
+pre .tag .title, pre .id, pre .attr_selector, pre .pseudo, pre .literal, pre .keyword, pre .hexcolor, pre .css .function, pre .ini .title, pre .css .class, pre .list .title, pre .clojure .title, pre .nginx .title, pre .tex .command, pre .request, pre .status {
+    font-weight: bold;
+    color: #000080
+}
+
+pre .attribute, pre .rules .keyword, pre .number, pre .date, pre .regexp, pre .tex .special {
+    font-weight: bold;
+    color: #00f
+}
+
+pre .number, pre .regexp {
+    font-weight: normal
+}
+
+pre .string, pre .value, pre .filter .argument, pre .css .function .params, pre .apache .tag {
+    color: #008000;
+    font-weight: bold
+}
+
+pre .symbol, pre .ruby .symbol .string, pre .char, pre .tex .formula {
+    color: #000;
+    background: #d0eded;
+    font-style: italic
+}
+
+pre .phpdoc, pre .yardoctag, pre .javadoctag {
+    text-decoration: underline
+}
+
+pre .variable, pre .envvar, pre .apache .sqbracket, pre .nginx .built_in {
+    color: #660e7a
+}
+
+pre .addition {
+    background: #baeeba
+}
+
+pre .deletion {
+    background: #ffc8bd
+}
+
+pre .diff .change {
+    background: #bccff9
+}
+
+.shortcuts {
+    background-image: url("/images/keyboard.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 8%;
+    padding: 0 0 0 25px;
+    color: #666 !important;
+}

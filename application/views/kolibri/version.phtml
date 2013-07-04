@@ -1,0 +1,11 @@
+<p class="page">{{ link_to("", "~") }} / {{ link_to("page/"~page.title, page.title) }} / Revisions</p>
+<h1>Revisions of <em>{{ page.title }}</em></h1>
+{% if versions is iterable %}
+    <ul>
+        {% for version in versions %}
+            <li>{{ link_to("version/"~version.page_id~"/"~version.version, "Revision #" ~ version.version) }}<br/>
+                <small>created at {{ version.created }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

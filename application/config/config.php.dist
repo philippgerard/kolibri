@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * Config
+ *
+ * This is the central config file of Kolibri. Change settings
+ * in here according to your needs.
+ *
+ * @package   Kolibri\Config
+ * @author    Philipp Gérard <philipp.gerard@zeitdenken.de>
+ * @since     May 2013
+ * @copyright Philipp Gérard <philipp.gerard@zeitdenken.de>
+ * @license   MIT License http://opensource.org/licenses/MIT
+ */
+
+return [
+    'application' => [
+        'controllersDir' => APPLICATION_PATH . 'controllers' . DIRECTORY_SEPARATOR,
+        'libraryDir'     => APPLICATION_PATH . 'library' . DIRECTORY_SEPARATOR,
+        'modelsDir'      => APPLICATION_PATH . 'models' . DIRECTORY_SEPARATOR,
+        'viewsDir'       => APPLICATION_PATH . 'views' . DIRECTORY_SEPARATOR,
+        'formsDir'       => APPLICATION_PATH . 'forms' . DIRECTORY_SEPARATOR,
+        'pluginsDir'     => APPLICATION_PATH . 'plugins' . DIRECTORY_SEPARATOR,
+        'vendorDir'      => realpath(APPLICATION_PATH . '..' . DIRECTORY_SEPARATOR . 'vendor') . DIRECTORY_SEPARATOR,
+    ],
+    'volt'        => [
+        'compiledPath'      => '/tmp/',
+        'compiledExtension' => '.phtml',
+        'compiledSeparator' => '_',
+        'stat'              => true,
+        'compileAlways'     => (getenv('ENVIRONMENT') == 'production') ? false : true,
+        'prefix'            => 'compile_',
+        'tidy'              => false,
+    ],
+    'cache'       => [
+        'models' => [
+            'adapter'  => 'Apc',
+            'settings' => [
+
+            ],
+            'lifetime' => 3600,
+        ],
+        'views'  => [
+            'adapter'  => 'File',
+            'settings' => [
+                'cacheDir' => (getenv('ENVIRONMENT') == 'production') ? realpath('../../../data/') : '/tmp/',
+            ],
+            'lifetime' => 3600,
+        ],
+    ],
+    'database'    => [
+        'adapter' => 'mysql',
+        'config'  => [
+            'host'     => (getenv('ENVIRONMENT') == 'production') ? '' : '',
+            'dbname'   => '',
+            'port'     => (getenv('ENVIRONMENT') == 'production') ? '' : '',
+            'username' => '',
+            'password' => '',
+            'encoding' => 'utf8',
+            //'dbname' => realpath(APPLICATION_PATH . '..' . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'wiki.db'),
+        ],
+    ],
+    'auth'        => [
+        'enabled'  => false,
+        'password' => 'yourpassword'
+    ],
+];
