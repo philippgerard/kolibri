@@ -145,10 +145,6 @@ class KolibriController extends Controller
         if ($page === false) {
             return $this->dispatcher->forward(array('action' => 'error404'));
         }
-        //$versions = Versions::find(array('page_id = :id:', 'bind' => array('id' => $id)));
-        //foreach ($versions as $version) {
-        //    $version->delete();
-        //}
         $page->getVersions()->delete();
         $page->delete();
         $this->viewCache->delete('page-' . $page->id);
