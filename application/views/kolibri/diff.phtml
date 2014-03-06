@@ -1,16 +1,31 @@
-<p class="page">{{ link_to("", "~") }} / {{ link_to("page/"~page.title, page.title) }}
-    / {{ link_to("version/"~page.id, "Revisions") }} / {{ revision }}</p>
+<ol class="breadcrumb">
+	<li>{{ link_to("", "~") }}</li>
+	<li>{{ link_to("page/"~page.title, page.title) }}</li>
+	<li>{{ link_to("version/"~page.id, "Revisions") }}</li>
+	<li>{{ revision }}</li>
+</ol>
 <h1>diff({{ revision }}, head)</h1>
-<button href="#" data-reveal-id="reimport" class="button small secondary">Reimport this revision</button>
+<button href="#" data-toggle="modal" data-target="#reimport" class="btn btn-default">Reimport this revision</button>
 <hr />
 {{ diff }}
 {% if diff is empty %}
 <p>This version and the current version are identical.</p>
 {% endif %}
-<div id="reimport" class="reveal-modal medium">
-    <h2>Are you sure?</h2>
-    <p class="lead">Reimporting this revision will set the contents of the revision as the latest contents.</p>
-    <p>The old contents won't be deleted but a new revision with the contents of this revision will be created. That means that you can undo this step.</p>
-    {{ link_to("reimport/" ~ page.id ~ "/" ~ revision, "Yes, go ahead.", "class": 'button secondary') }}
-    <a class="close-reveal-modal">&#215;</a>
+<div class="modal fade" id="reimport" tabindex="-1" role="dialog" aria-labelledby="reimportLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+			</div>
+			<div class="modal-body">
+				<p class="lead">Reimporting this revision will set the contents of the revision as the latest contents.</p>
+				<p>The old contents won't be deleted but a new revision with the contents of this revision will be created. That means that you can undo this step.</p>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					{{ link_to("reimport/" ~ page.id ~ "/" ~ revision, "Yes, go ahead.", "class": 'btn btn-primary') }}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -1,41 +1,40 @@
-<nav class="top-bar">
-    <ul class="title-area">
-        <!-- Title Area -->
-        <li class="name">
-            <h1>
-                {{ link_to("", "Kolibri") }}
-            </h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-
-    <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-            <li class="divider"></li>
-            <li class="has-dropdown">
-                <a href="{{ url.getBaseUri() }}#">Options</a>
-                <ul class="dropdown">
-                    <li><label>Global options</label></li>
-                    <li>{{ link_to("", "Back to index") }}</li>
-                    <li>{{ link_to("create", "Add page", 'id': 'href_add') }}</li>
-                    <!--<li>{{ link_to("search", "Search") }}</li>-->
-                    <li>{{ link_to("list", "List all pages") }}</li>
-                    <li>{{ link_to("changes", "Latest changes") }}</li>
-                    {% if page is empty %}
-                    {% else %}
-                        <li class="divider"></li>
-                        <li><label>Page specific options</label></li>
+<div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            {{ link_to("", "Kolibri", "class": "navbar-brand") }}
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="has-dropdown">
+                    <a href="{{ url.getBaseUri() }}#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation" class="dropdown-header">Global options</li>
+                        <li>{{ link_to("", "Back to index") }}</li>
+                        <li>{{ link_to("create", "Add page", 'id': 'href_add') }}</li>
+                        <!--<li>{{ link_to("search", "Search") }}</li>-->
+                        <li>{{ link_to("list", "List all pages") }}</li>
+                        <li>{{ link_to("changes", "Latest changes") }}</li>
+                        {% if page is empty %}
+                        {% else %}
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" class="dropdown-header">Page specific options</li>
                         <li>{{ link_to("edit/" ~ page.id, "Edit this page", 'id': 'href_edit') }}</li>
                         <li>{{ link_to("export/" ~ page.id, "Export this page") }}</li>
                         <li>{{ link_to("version/" ~ page.id, "View revisions") }}</li>
-                        <li><a href="#" data-reveal-id="delete">Delete this page</a></li>
-                    {% endif %}
-                    <?php if(in_array($this->dispatcher->getActionName(),["edit","diff","version"])): ?>
+                        <li><a href="#" data-toggle="modal" data-target="#delete">Delete this page</a></li>
+                        {% endif %}
+                        <?php if(in_array($this->dispatcher->getActionName(),["edit","diff","version"])): ?>
                         <li>{{ link_to("page/" ~ page.title, "Back to page") }}</li>
-                    <?php endif; ?>
-                </ul>
-            </li>
-        </ul>
-    </section>
-</nav>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

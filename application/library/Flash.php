@@ -21,7 +21,7 @@ class Flash extends \Phalcon\Flash\Session
     {
         $messages = $this->getMessages(null, true);
         foreach ($messages as $message) {
-            echo '<div data-alert class="alert-box secondary">' . $message[0] . '<a href="#" class="close">&times;</a></div>';
+            echo '<div class="alert alert-dismissable">' . $message[0] . '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>';
         }
     }
 

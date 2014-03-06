@@ -1,7 +1,12 @@
-<p class="page">{{ link_to("", "~") }} / {{ link_to("page/"~page.title, page.title) }} / Edit</p>
+<ol class="breadcrumb">
+	<li>{{ link_to("", "~") }}</li>
+	<li>{{ link_to("page/"~page.title, page.title) }}</li>
+	<li>Edit</li>
+</ol>
 {{ form('update', 'id': 'update') }}
 {{ form.render('id') }}
 {{ form.render('content') }}
 <div id="editor">{{ page.content }}</div>
 <button type="submit" name="submit" id="submit" accesskey="s" class="secondary"><b>S</b>ave changes</button>
 </form>
+{{ assets.outputJs("ace") }}

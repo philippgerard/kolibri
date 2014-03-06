@@ -17,7 +17,7 @@ namespace Kolibri;
 
 try {
 
-    $config = new \Phalcon\Config(require_once("config/config.php"));
+    $config = new \Phalcon\Config(require("config/config.php"));
 
     $loader = new \Phalcon\Loader();
 
@@ -124,7 +124,7 @@ try {
     $di->set(
         'router',
         function () {
-            return require_once("config/routes.php");
+            return require("config/routes.php");
         }
     );
 

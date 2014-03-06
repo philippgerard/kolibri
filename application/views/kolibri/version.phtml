@@ -1,4 +1,8 @@
-<p class="page">{{ link_to("", "~") }} / {{ link_to("page/"~page.title, page.title) }} / Revisions</p>
+<ol class="breadcrumb">
+	<li>{{ link_to("", "~") }}</li>
+	<li>{{ link_to("page/"~page.title, page.title) }}</li>
+	<li>Revisions</li>
+</ol>
 <h1>Revisions of <em>{{ page.title }}</em></h1>
 {% if versions is iterable %}
     <ul>

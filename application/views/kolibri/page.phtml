@@ -4,7 +4,11 @@
 {% else %}
     {# Cache all pages for 1 day, it's static content anyways #}
     {% cache ("page-" ~ page.id) 86400 %}
-    <p class="page">{{ link_to("", "~") }} / {{ page.title }}</p>
+    <ol class="breadcrumb">
+		<li>{{ link_to("", "~") }}</li>
+		<li>{{ page.title }}</li>
+	</ol>
+    <h1>{{ page.title }}</h1>
     <div id="content">
         {{ purifier.purify(markdown.defaultTransform(page.content)) }}
     </div>

@@ -2,5 +2,6 @@
 <h1>{{ form.render('title') }}</h1>
 {{ form.render('content') }}
 <div id="editor"></div>
-<button type="submit" name="submit" id="submit" accesskey="s" class="secondary"><b>S</b>ave page</button>
+<button type="submit" name="submit" id="submit" accesskey="s" class="btn btn-default"><b>S</b>ave page</button>
 </form>
+{{ assets.outputJs("ace") }}

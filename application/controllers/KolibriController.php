@@ -36,6 +36,9 @@ class KolibriController extends Controller
      */
     public function loginAction()
     {
+        // Make sure also login pages are styled
+        $this->initialize();
+        
         $this->view->title = 'Login';
         if ($_POST) {
             if (isset($this->persistent->attempts) && $this->persistent->attempts >= 3 && $this->persistent->attempts < 10) {
@@ -97,7 +100,9 @@ class KolibriController extends Controller
         if ($page === false) {
             return $this->dispatcher->forward(array('action' => 'error404'));
         }
-        $this->assets->addJs('scripts/ace/ace.js');
+        $this->assets
+            ->collection("ace")
+            ->addJs('scripts/ace/ace.js');
         $page->content     = htmlentities($page->content);
         $this->view->page  = $page;
         $this->view->title = $page->title . ' – Edit ';
@@ -158,7 +163,9 @@ class KolibriController extends Controller
      */
     public function createAction()
     {
-        $this->assets->addJs('scripts/ace/ace.js');
+        $this->assets
+            ->collection("ace")
+            ->addJs('scripts/ace/ace.js');
         $this->view->form  = new \Kolibri\Forms\Create();
         $this->view->title = 'Add page';
     }

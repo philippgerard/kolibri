@@ -18,7 +18,7 @@
          */
         init: function () {
             // Load Foundation
-            $(document).foundation();
+            //$(document).foundation();
             if(typeof hljs != 'undefined') {
                 // Init highlight.js
                 hljs.initHighlightingOnLoad();
@@ -59,6 +59,13 @@
                     window.location = document.getElementById('href_edit').href;
                 });
             }
+            // Add table class to all automatically generated tables for Bootstrap compatability
+            // Check for ace editor div presence
+            if ($("table").length > 0) {
+                $("table").each(function() {
+                    $(this).addClass("table").addClass("table-hover");
+                });
+            }
         },
 
         /**
@@ -66,8 +73,8 @@
          */
         initAce: function () {
             Kolibri.editor = ace.edit("editor");
-            Kolibri.editor.setTheme("ace/theme/chrome");
-            Kolibri.editor.getSession().setMode("ace/mode/markdown");
+            Kolibri.editor.setTheme("../scripts/ace/theme/chrome");
+            Kolibri.editor.getSession().setMode("../scripts/ace/mode/markdown");
             Kolibri.editor.getSession().setTabSize(4);
             Kolibri.editor.getSession().setUseWrapMode(true);
             Kolibri.editor.setShowPrintMargin(false);

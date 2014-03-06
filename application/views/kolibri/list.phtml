@@ -1,13 +1,16 @@
-<p class="page">{{ link_to("", "~") }} / List all pages</p>
+<ol class="breadcrumb">
+	<li>{{ link_to("", "~") }}</li>
+	<li>List all pages</li>
+</ol>
 <h1>List of all pages</h1>
 <ul>
-{% for key, letter in pages %}
-<li>{{key}}
-    <ul>
-    {% for page in letter %}
-        <li>{{ link_to("page/"~page.title, page.title) }}</li>
-    {% endfor %}
-    </ul>
-</li>
-{% endfor %}
+	{% for key, letter in pages %}
+	<li>{{key}}
+		<ul>
+			{% for page in letter %}
+			<li>{{ link_to("page/"~page.title, page.title) }}</li>
+			{% endfor %}
+		</ul>
+	</li>
+	{% endfor %}
 </ul>

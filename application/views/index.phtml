@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en"> <!--<![endif]-->
-
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <title>{{ title }} – kolibri.io</title>
-    {{ assets.outputCss() }}
-</head>
-<body class="antialiased">
-{% include "partials/header.phtml" %}
-{{ content() }}
-{% include "partials/footer.phtml" %}
-{{ assets.outputJs() }}
-{% if page is empty %}
-{% else %}
-    <div id="delete" class="reveal-modal small">
-        <h2>Are you certain?</h2>
-
-        <p>Do you really want to delete this page? This can not be undone. We don't use soft-deletes. Yep,
-            really.</p>
-        <a class="close-reveal-modal">&#215;</a>
-        {{ link_to("delete/" ~ page.id, "Yes, go ahead.", "class": 'button secondary') }}
-    </div>
-{% endif %}
-<div id="shortcuts" class="reveal-modal small">
-    <h3>Keyboard shortcuts</h3>
-
-    <p>The following shortcuts are available in the appropriate context:</p>
-    <dl>
-        <dt>Create new page</dt>
-        <dd><kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>a</kbd></dd>
-        <dt>Edit the current page</dt>
-        <dd><kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>e</kbd></dd>
-        <dt>Save currently open form</dt>
-        <dd><kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>s</kbd></dd>
-    </dl>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-</body>
+    <!--[if gt IE 8]><!-->
+    <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title }} – kolibri.io</title>
+        {{ assets.outputCss("css") }}
+    </head>
+    <body class="antialiased">
+        <div class="container">
+            {% include "partials/header.phtml" %}
+            {{ content() }}
+            {% include "partials/footer.phtml" %}
+        </div>
+        {{ assets.outputJs("javascript") }}
+        {% if page is empty %}
+        {% else %}
+        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Are you certain?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete this page? This can not be undone. We don't use soft-deletes. Yep,
+                        really.</p>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            {{ link_to("delete/" ~ page.id, "Yes, go ahead.", "class": 'btn btn-primary') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="modal fade" id="shortcuts" tabindex="-1" role="dialog" aria-labelledby="shortcutsLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Keyboard shortcuts</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>The following shortcuts are available in the appropriate context:</p>
+                        <dl>
+                            <dt>Create new page</dt>
+                            <dd><kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>a</kbd></dd>
+                            <dt>Edit the current page</dt>
+                            <dd><kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>e</kbd></dd>
+                            <dt>Save currently open form</dt>
+                            <dd><kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>s</kbd></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
