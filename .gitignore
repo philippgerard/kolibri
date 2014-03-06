@@ -1,3 +1,4 @@
 vendor
 application/config/config.php
-public/cache/*
+public/cache/scripts.js
+public/cache/styles.css
