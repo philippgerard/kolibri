@@ -6,30 +6,29 @@
  * This bootstrap defines all dependencies of Kolibri and applies
  * the relevant settings from the config.
  *
- * @package   Kolibri
  * @author    Philipp Gérard <philipp.gerard@zeitdenken.de>
+ *
  * @since     May 2013
+ *
  * @copyright Philipp Gérard <philipp.gerard@zeitdenken.de>
  * @license   MIT License http://opensource.org/licenses/MIT
  */
-
 namespace Kolibri;
 
 try {
-
-    $config = new \Phalcon\Config(require("config/config.php"));
+    $config = new \Phalcon\Config(require('config/config.php'));
 
     $loader = new \Phalcon\Loader();
 
-    require $config->application->vendorDir . 'autoload.php';
+    require $config->application->vendorDir.'autoload.php';
 
-    $namespaces = array(
+    $namespaces = [
         'Kolibri\Controllers' => $config->application->controllersDir,
         'Kolibri\Models'      => $config->application->modelsDir,
         'Kolibri\Library'     => $config->application->libraryDir,
         'Kolibri\Forms'       => $config->application->formsDir,
-        'Kolibri\Plugins'     => $config->application->pluginsDir
-    );
+        'Kolibri\Plugins'     => $config->application->pluginsDir,
+    ];
 
     $loader->registerNamespaces($namespaces);
     $loader->register();
@@ -45,15 +44,15 @@ try {
 
             $eventsManager = $di->getShared('eventsManager');
             if ($config->volt->tidy === true) {
-                $eventsManager->attach("view:afterRender", new \Kolibri\Plugins\Tidy());
+                $eventsManager->attach('view:afterRender', new \Kolibri\Plugins\Tidy());
             }
 
             $view->setViewsDir($config->application->viewsDir);
             $view->setEventsManager($eventsManager);
             $view->registerEngines(
-                array(
-                    ".phtml" => 'volt'
-                )
+                [
+                    '.phtml' => 'volt',
+                ]
             );
 
             return $view;
@@ -74,6 +73,7 @@ try {
                     return "round(memory_get_usage(false)/1024,1).'kB'";
                 }
             );
+
             return $volt;
         },
         true
@@ -84,6 +84,7 @@ try {
         function () {
             $session = new \Phalcon\Session\Adapter\Files();
             $session->start();
+
             return $session;
         }
     );
@@ -98,11 +99,11 @@ try {
     $di->set(
         'viewCache',
         function () use ($config) {
-            $frontCache = new \Phalcon\Cache\Frontend\Output(array(
+            $frontCache = new \Phalcon\Cache\Frontend\Output([
                 'lifetime' => $config->cache->views->lifetime,
-            ));
-            $adapter    = "\Phalcon\Cache\Backend\\".ucfirst($config->cache->views->adapter);
-            $cache      = new $adapter($frontCache, $config->cache->views->settings->toArray());
+            ]);
+            $adapter = "\Phalcon\Cache\Backend\\".ucfirst($config->cache->views->adapter);
+            $cache = new $adapter($frontCache, $config->cache->views->settings->toArray());
 
             return $cache;
         }
@@ -111,11 +112,11 @@ try {
     $di->set(
         'modelsCache',
         function () use ($config) {
-            $frontCache = new \Phalcon\Cache\Frontend\Data(array(
+            $frontCache = new \Phalcon\Cache\Frontend\Data([
                 'lifetime' => $config->cache->models->lifetime,
-            ));
-            $adapter    = "\Phalcon\Cache\Backend\\".ucfirst($config->cache->models->adapter);
-            $cache      = new $adapter($frontCache, $config->cache->models->settings->toArray());
+            ]);
+            $adapter = "\Phalcon\Cache\Backend\\".ucfirst($config->cache->models->adapter);
+            $cache = new $adapter($frontCache, $config->cache->models->settings->toArray());
 
             return $cache;
         }
@@ -124,7 +125,7 @@ try {
     $di->set(
         'router',
         function () {
-            return require("config/routes.php");
+            return require 'config/routes.php';
         }
     );
 
@@ -133,6 +134,7 @@ try {
         function () {
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setDefaultNamespace('Kolibri\Controllers\\');
+
             return $dispatcher;
         }
     );
@@ -140,7 +142,8 @@ try {
     $di->set(
         'db',
         function () use ($config) {
-            $adapter = '\Phalcon\Db\Adapter\Pdo\\' . ucfirst($config->database->adapter);
+            $adapter = '\Phalcon\Db\Adapter\Pdo\\'.ucfirst($config->database->adapter);
+
             return new $adapter($config->database->config->toArray());
         }
     );
@@ -150,7 +153,7 @@ try {
     $di->set(
         'purifier',
         function () {
-            $config   = \HTMLPurifier_Config::createDefault();
+            $config = \HTMLPurifier_Config::createDefault();
             $purifier = new \HTMLPurifier($config);
 
             return $purifier;
@@ -161,7 +164,6 @@ try {
     $application->setDI($di);
 
     echo $application->handle()->getContent();
-
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

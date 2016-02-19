@@ -3,14 +3,15 @@
 namespace Kolibri\Library;
 
 /**
- * Base Controller
+ * Base Controller.
  *
  * This is the base controller which is used as a boilerplate for
  * all other controllers Kolibri has or might have in the future.
  *
- * @package   Kolibri\Library
  * @author    Philipp Gérard <philipp.gerard@zeitdenken.de>
+ *
  * @since     May 2013
+ *
  * @copyright Philipp Gérard <philipp.gerard@zeitdenken.de>
  * @license   MIT License http://opensource.org/licenses/MIT
  *
@@ -19,7 +20,6 @@ namespace Kolibri\Library;
  */
 class Controller extends \Phalcon\Mvc\Controller
 {
-
     public function initialize()
     {
         $this->view->setTemplateAfter('common');
@@ -50,9 +50,8 @@ class Controller extends \Phalcon\Mvc\Controller
     {
         if ($this->config->auth->enabled) {
             if (!$this->persistent->authenticated && $dispatcher->getActionName() != 'login') {
-                $dispatcher->forward(array('action' => 'login'));
+                $dispatcher->forward(['action' => 'login']);
             }
         }
     }
-
 }
