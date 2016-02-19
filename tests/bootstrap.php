@@ -1,22 +1,22 @@
 <?php
 
-define("APPLICATION_PATH", realpath(
-    __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'application'
-) . DIRECTORY_SEPARATOR);
+define('APPLICATION_PATH', realpath(
+    __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'application'
+).DIRECTORY_SEPARATOR);
 
-$config = new \Phalcon\Config(require_once(APPLICATION_PATH . "config/config.php"));
+$config = new \Phalcon\Config(require_once(APPLICATION_PATH.'config/config.php'));
 
 $loader = new \Phalcon\Loader();
 
-require $config->application->vendorDir . 'autoload.php';
+require $config->application->vendorDir.'autoload.php';
 
-$namespaces = array(
+$namespaces = [
     'Wiki\Controllers' => $config->application->controllersDir,
     'Wiki\Models'      => $config->application->modelsDir,
     'Wiki\Library'     => $config->application->libraryDir,
     'Wiki\Forms'       => $config->application->formsDir,
-    'Wiki\Plugins'     => $config->application->pluginsDir
-);
+    'Wiki\Plugins'     => $config->application->pluginsDir,
+];
 
 $loader->registerNamespaces($namespaces);
 $loader->register();
@@ -34,9 +34,9 @@ $di->set(
         $view->setViewsDir($config->application->viewsDir);
         $view->setEventsManager($eventsManager);
         $view->registerEngines(
-            array(
-                ".phtml" => 'volt'
-            )
+            [
+                '.phtml' => 'volt',
+            ]
         );
 
         return $view;
@@ -57,6 +57,7 @@ $di->set(
                 return "round(memory_get_usage(false)/1024,1).'kB'";
             }
         );
+
         return $volt;
     },
     true
@@ -67,6 +68,7 @@ $di->set(
     function () {
         $session = new \Phalcon\Session\Adapter\Files();
         $session->start();
+
         return $session;
     }
 );
@@ -81,10 +83,10 @@ $di->set(
 $di->set(
     'viewCache',
     function () {
-        $frontCache = new \Phalcon\Cache\Frontend\Output(array(
-            "lifetime" => 3600
-        ));
-        $cache      = new \Phalcon\Cache\Backend\Apc($frontCache, array());
+        $frontCache = new \Phalcon\Cache\Frontend\Output([
+            'lifetime' => 3600,
+        ]);
+        $cache = new \Phalcon\Cache\Backend\Apc($frontCache, []);
 
         return $cache;
     }
@@ -93,7 +95,7 @@ $di->set(
 $di->set(
     'router',
     function () {
-        return require_once("config/routes.php");
+        return require_once 'config/routes.php';
     }
 );
 

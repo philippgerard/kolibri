@@ -3,19 +3,19 @@
 namespace Kolibri\Models;
 
 /**
- * Pages model
+ * Pages model.
  *
  * This model defines a row in the pages table.
  *
- * @package   Kolibri\Models
  * @author    Philipp Gérard <philipp.gerard@zeitdenken.de>
+ *
  * @since     May 2013
+ *
  * @copyright Philipp Gérard <philipp.gerard@zeitdenken.de>
  * @license   MIT License http://opensource.org/licenses/MIT
  */
 class Pages extends \Phalcon\Mvc\Model
 {
-
     public $id;
     public $title;
     public $content;
@@ -27,9 +27,9 @@ class Pages extends \Phalcon\Mvc\Model
             'id',
             'Kolibri\Models\Versions',
             'page_id',
-            array(
-                'alias' => 'Versions'
-            )
+            [
+                'alias' => 'Versions',
+            ]
         );
     }
 
@@ -37,5 +37,4 @@ class Pages extends \Phalcon\Mvc\Model
     {
         return 'pages';
     }
-
 }

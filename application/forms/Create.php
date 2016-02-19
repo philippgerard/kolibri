@@ -13,9 +13,10 @@ use Phalcon\Validation\Validator\Regex;
  *
  * This form defines the contents of the form used to add new pages.
  *
- * @package   Kolibri\Forms
  * @author    Philipp Gérard <philipp.gerard@zeitdenken.de>
+ *
  * @since     May 2013
+ *
  * @copyright Philipp Gérard <philipp.gerard@zeitdenken.de>
  * @license   MIT License http://opensource.org/licenses/MIT
  */
@@ -23,31 +24,30 @@ class Create extends Form
 {
     public function initialize()
     {
-        $content = new TextArea('content', array(
+        $content = new TextArea('content', [
             'rows'        => 35,
             'style'       => 'display: none;',
-            'placeholder' => 'Some Markdown text'
-        ));
+            'placeholder' => 'Some Markdown text',
+        ]);
         $content->addValidator(
-            new PresenceOf(array(
-                'message' => 'Some content is required'
-            ))
+            new PresenceOf([
+                'message' => 'Some content is required',
+            ])
         );
         $this->add($content);
 
-        $title = new Text('title', array('placeholder' => 'Title (CamelCase only)', 'autofocus' => true));
+        $title = new Text('title', ['placeholder' => 'Title (CamelCase only)', 'autofocus' => true]);
         $title->addValidator(
-            new PresenceOf(array(
-                'message' => 'A title is required'
-            ))
+            new PresenceOf([
+                'message' => 'A title is required',
+            ])
         );
         $title->addValidator(
-            new Regex(array(
+            new Regex([
                 'pattern' => '/[A-Z][a-zA-Z]*/',
-                'message' => 'Only CamelCase or single word titles are allowed'
-            ))
+                'message' => 'Only CamelCase or single word titles are allowed',
+            ])
         );
         $this->add($title);
     }
-
 }

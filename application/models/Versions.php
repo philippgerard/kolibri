@@ -7,15 +7,15 @@ namespace Kolibri\Models;
  *
  * This model defines a row in the versions table.
  *
- * @package   Kolibri\Library
  * @author    Philipp Gérard <philipp.gerard@zeitdenken.de>
+ *
  * @since     May 2013
+ *
  * @copyright Philipp Gérard <philipp.gerard@zeitdenken.de>
  * @license   MIT License http://opensource.org/licenses/MIT
  */
 class Versions extends \Phalcon\Mvc\Model
 {
-
     public $id;
     public $page_id;
     public $version;
@@ -29,9 +29,9 @@ class Versions extends \Phalcon\Mvc\Model
             'page_id',
             'Kolibri\Models\Pages',
             'id',
-            array(
-                'alias' => 'Pages'
-            )
+            [
+                'alias' => 'Pages',
+            ]
         );
     }
 
@@ -44,5 +44,4 @@ class Versions extends \Phalcon\Mvc\Model
     {
         $this->created = date('Y-m-d H:i:s');
     }
-
 }

@@ -1,11 +1,11 @@
 <?php 
 
-if(!file_exists("../application/config/config.php")){
-	die("Configuration file missing");
+if (!file_exists('../application/config/config.php')) {
+    die('Configuration file missing');
 }
 
-if(!file_exists("../vendor/autoload.php")){
-	die("Composer was not run, autoload.php missing");
+if (!file_exists('../vendor/autoload.php')) {
+    die('Composer was not run, autoload.php missing');
 }
 
 ?>

@@ -13,9 +13,10 @@ use Phalcon\Validation\Validator\Regex;
  *
  * This class defines the contents of the form used to edit a page.
  *
- * @package   Kolibri\Forms
  * @author    Philipp Gérard <philipp.gerard@zeitdenken.de>
+ *
  * @since     May 2013
+ *
  * @copyright Philipp Gérard <philipp.gerard@zeitdenken.de>
  * @license   MIT License http://opensource.org/licenses/MIT
  */
@@ -23,22 +24,21 @@ class Edit extends Form
 {
     public function initialize()
     {
-        $content = new TextArea('content', array('rows' => 35, 'style' => 'display: none', 'spellcheck' => 'false'));
+        $content = new TextArea('content', ['rows' => 35, 'style' => 'display: none', 'spellcheck' => 'false']);
         $content->addValidator(
-            new PresenceOf(array(
-                'message' => 'Some content is required'
-            ))
+            new PresenceOf([
+                'message' => 'Some content is required',
+            ])
         );
         $this->add($content);
 
         $id = new Hidden('id');
         $id->addValidator(
-            new Regex(array(
+            new Regex([
                 'pattern' => '/[0-9]*/',
-                'message' => 'The page id can only be numerical'
-            ))
+                'message' => 'The page id can only be numerical',
+            ])
         );
         $this->add($id);
     }
-
 }
